@@ -1,0 +1,6 @@
+data/
+notebooks/
+venv/
+tools/
+__pycache__/
+*.pyc
