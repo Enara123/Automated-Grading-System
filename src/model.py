@@ -173,18 +173,26 @@ def prediction(features, trained_model, scaler, device):
             f"Feature size mismatch! Expected {expected_dim}, got {features.shape[0]}"
         )
 
+    print("Combined features shape:", features.shape)
+    print("Combined features values (first 10):", features[:10])
+
     # 5️⃣ Scale features
     combined_scaled = scaler.transform([features])
+    print("Scaled features (first 10):", combined_scaled[0][:10])
 
     # 6️⃣ Convert to tensor
     input_tensor = torch.tensor(combined_scaled, dtype=torch.float32).to(device)
+    print("Input tensor shape:", input_tensor.shape)
 
     # 7️⃣ Predict with model
     trained_model.eval()
     with torch.no_grad():
         pred_scaled = trained_model(input_tensor).cpu().numpy()[0][0]
 
+    print("Raw model output (0-1):", pred_scaled)
+
     # 8️⃣ Scale to 0–100
     final_grade = float(pred_scaled * 100)
+    print("Final predicted grade (0-100):", final_grade)
 
     return final_grade
