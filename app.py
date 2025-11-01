@@ -27,4 +27,4 @@ if uploaded_file is not None:
     if st.button("Grade Code"):
         with st.spinner("Evaluating..."):
             grade = predict_grade(code, difficulty, trained_model, scaler, device)
-        st.success(f"✅ Predicted Grade: {grade}")
+        st.info(f"Predicted Grade: {grade}/100")
