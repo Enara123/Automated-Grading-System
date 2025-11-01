@@ -192,7 +192,7 @@ def prediction(features, trained_model, scaler, device):
     print("Raw model output (0-1):", pred_scaled)
 
     # 8️⃣ Scale to 0–100
-    final_grade = float(pred_scaled * 100)
+    final_grade = round(pred_scaled * 100)
     print("Final predicted grade (0-100):", final_grade)
 
     return final_grade
